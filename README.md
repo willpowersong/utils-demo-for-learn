@@ -11,7 +11,5 @@
 
 >功能简介
 
-
-JS-Ajax-loadMore 		| 使用jQuery写的Ajax的demo 
-JS-slide-changeColor	| 主要是一个随机颜色的生成,需要转成16进制
-
+	JS-Ajax-loadMore 		| 使用jQuery写的Ajax的demo 
+	JS-slide-changeColor	| 主要是一个随机颜色的生成,需要转成16进制

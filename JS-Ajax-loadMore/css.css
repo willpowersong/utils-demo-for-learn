@@ -1,0 +1,19 @@
+.item{
+	width: 200px;
+	min-height: 50px;
+	border: 1px solid black;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	border-radius: 4px;
+}
+#but{
+	text-align: center;
+	width:100px;
+	padding-top: 3px;
+	height:24px;
+	background: #0c0;
+	border: 1px solid black;
+	border-radius: 5px;
+	color:white;
+	cursor:default;
+}
