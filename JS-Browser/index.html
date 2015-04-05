@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang='en'>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<title>Browser判断</title>
+</head>
+<body>
+<script type="text/javascript" src='browser.js'></script>
+<script type="text/javascript">
+	(function(){
+		document.write('浏览器:'+browser.browser+'<br>');
+		document.write('浏览器引擎:'+browser.engine+'<br>');
+		document.write('浏览器版本:'+browser.version+'<br>');
+		document.write('设备系统:'+browser.system+'<br>');
+		document.write('userAgent:'+navigator.userAgent.toLowerCase());
+	})();
+</script>
+</body>
+</html>
