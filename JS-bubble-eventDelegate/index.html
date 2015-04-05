@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang='en'>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<title>bubble</title>
+<style type="text/css">
+#list{
+	margin: 0 auto;
+	width: 500px;
+	height:100px;
+}
+#list>li{
+	text-decoration: none;
+	list-style: none;
+	width:500px;
+	height:25px;
+	border: 1px solid black;
+	border-collapse:collapse;
+	background: #73F;
+}
+</style>
+</head>
+<body>
+	<ul id='list'>
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+	</ul>
+<script type="text/javascript">
+(function(){
+	var temp,
+		list = document.getElementById('list');
+	list.addEventListener('click',function(e){
+		temp=e.target;
+		alert(temp.innerHTML);
+		e.stopPropagation();
+	},true);
+	// 由于这里事件绑定给了list，所以直接使用stopPropagation是不能取消冒泡的
+	// 改addEventListener的第3参数可以取消冒泡，这个参数反向了冒泡规则
+	// 一般情况下只需要在child节点进行stopPropagation
+	list.onclick=function(e){
+		alert('ul');
+	};
+}).call(this);
+</script>
+</body>
+</html>
