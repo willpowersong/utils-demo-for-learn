@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang='en'>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<title>cutting and uploading image</title>
+<style type="text/css">
+#bd{
+	width: 500px;
+	height: 500px;
+	margin: 0 auto;
+}
+#image{
+	width: 500px;
+	height: 500px;
+	background: black;
+}
+#innerPic{
+	width: 500px;
+	height: 500px;
+}
+#img1{
+	width: 120px;
+	height: 120px;
+	float: left;
+	position: fixed;
+	top:20px;
+	left:950px;
+	background:cyan;
+}
+#img2{
+	width: 50px;
+	height: 50px;
+	float: left;
+	position: fixed;
+	top:150px;
+	left:950px;
+	background: cyan;
+}
+#img3{
+	width: 24px;
+	height: 24px;
+	float: left;
+	position: fixed;
+	top:210px;
+	left:950px;
+	background: cyan;
+}
+#split{
+	width: 120px;
+	height: 120px;
+	cursor: move;
+	background: cyan;
+	top:150px;
+	left: 150px;
+}
+</style>
+</head>
+<body>
+<div id='bd'>
+	<div id='image'><div id='innerPic'><!-- <div id='split'></div> --></div></div>
+
+	<form action='upload.php' method='post' enctype='multipart/form-data'>
+		<input type='file' name='file' id='pic'>
+		<input type='button' value='pic' id='but'>
+		<input type='submit' name='submit' value='提交'>
+	</form>
+</div>
+<!-- 	<div id='img1'></div>
+	<div id='img2'></div>
+	<div id='img3'></div> -->
+<script type="text/javascript">
+(function(){
+
+	var pic = document.getElementById("pic"),
+		but = document.getElementById("but"),
+		addr,
+		img1 = document.getElementById("img1"),
+		img2 = document.getElementById("img2"),
+		img3 = document.getElementById("img3"),
+		split = document.getElementById("split"),
+		pointer = {};
+
+	function getAddr(file){
+		if(file['files'] && file['files'][0]){
+			var reader = new FileReader();
+			reader.onload = function(evt){
+				addr=evt.target.result;
+				console.log(addr);
+				document.getElementById("innerPic").style.background="url('"+addr+"') no-repeat center";
+				document.getElementById("innerPic").style.backgroundSize="contain";
+			};
+			reader.readAsDataURL(file.files[0]);
+		}
+	};
+
+	but.addEventListener('click',function(){
+		getAddr(pic);
+	},false);
+
+
+})();
+</script>
+</body>
+</html>

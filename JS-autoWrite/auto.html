@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang='en'>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<title>autoWrite</title>
+<style type="text/css">
+*{
+	margin:0;
+	padding:0;
+	overflow: hidden;
+}
+</style>
+</head>
+<body>
+<canvas id='autoWrite'></canvas>
+<script type="text/javascript">
+(function(){
+
+	var index = 0,end = 0,speed = 60,chars,row,content,text,
+		context,
+		canvas = document.getElementById('autoWrite');
+	if(canvas.getContext('2d')){
+		context = canvas.getContext('2d');
+	}
+	canvas.width = window.innerWidth;
+	canvas.height = window.innerHeight;
+
+	context.fillStyle="#000";
+	context.fillRect(0, 0, canvas.width, canvas.height);
+
+	content = [ 'public static void main(String[] args) {',
+				'        // profile',
+				'        String name = "孟祥路";',
+				'        String e-mail = "coral.script@foxmail.com";',
+				'        String school = "中南民族大学";',
+				'        String major = "SoftWare 软件工程";',
+				'        String skill = "JavaScript/Java/Python/PHP";',
+				'        return ;',
+				'}_'];
+
+
+	context.fillStyle = '#0F0';
+	context.font = "20px 'MS Sans Serif'";
+	text = function(){
+		chars = '';
+		row = Math.max(0, index - 4);
+	
+		while(row <= index){
+			if(end !== content[index].length){
+				chars = content[index].substring(0,end)+"_";	
+			}
+			else{
+				chars = content[index].substring(0,end);		
+			}
+			row++;
+		}
+
+		context.fillStyle = "#000";
+		context.fillRect(0, row*50+50, canvas.width, canvas.height);
+		context.fillStyle = "#0F0";
+		context.fillText(chars,canvas.width-1000,row*50+50);
+
+		if(end++ === content[index].length){
+			end = 0;
+			index++;
+			if(index !== content.length){
+				return setTimeout(text,1500);
+			}
+		}else{
+			return setTimeout(text, speed);
+		}
+	};
+
+window.onload = function() {
+	return text();
+}
+
+}).call(this);
+</script>
+</body>
+</html>

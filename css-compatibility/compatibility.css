@@ -1,0 +1,141 @@
+// 选择器的种类
+元素/标签选择器 div
+通配符选择器 *
+类选择器 .
+ID选择器 #
+属性选择器 a[href]
+后代选择器 ul li
+子元素选择器 li > strong
+相邻兄弟选择器 ul + ol
+伪类 :hover :link :visited :active
+伪元素 :first-line :first-letter :before :after
+
+一些不常用的css属性
+折叠边框	border-collapse:collapse;
+首行缩进	text-indent
+使用text-indent + padding-left实现悬挂缩进
+两端对齐	text-align:justify;
+图片覆盖	background-size:cover;
+图片不动	background-attachment:fixed;
+单词换行	word-warp:break-word;
+行间距		line-height
+边框阴影	box-shadow
+线性渐变	linear-gradient
+设置textarea是否允许缩放	resize
+
+盒子模型
+
+css定位机制
+普通流,浮动流,绝对定位
+普通流就是流式布局,块级框从上到下一个个排列
+float 浮动框不在文档的普通流中
+使用clear规定不允许出现浮动left,right,both,none
+absolute,fixed
+relative仍占空间
+overflow处理溢出 hidden,scroll
+z-index 设置层高
+clip裁剪img
+
+一些属性的差异
+visibility & display
+visibility占位置
+display不占位置
+
+css媒体查询
+@media
+使用不同的规则应对不同的设备
+
+兼容问题
+FF设置padding后会增加height,width.但IE不会,使用!important设置
+IE不支持!important
+FF和IE解释盒子模型不一致,导致相差2px
+div{margin:30px!important;margin:28px;} 
+ul,ol的缩进IE解释成margin,FF解释成padding
+默认字体大小不同
+FF中固定高度值的容器不会被撑开,使用min-height
+IE专用的条件注释 lte lt gte gt !
+<!--[if IE 7]>
+<![endif]-->
+<!--[if lte IE 6]>
+<![endif]-->
+
+css sprite [background-position]
+
+::selection选择器
+::-moz-selection(FF)
+修改被选中文本
+IE9+ FF chrome opera
+
+css优先级问题
+ID > class
+行内>内部样式>外部样式>import
+内联>ID>class>标签选择器
+
+@import 在加载完页面后加载
+link在加载也面前加载
+
+{css3旋转与翻转}
+rotate旋转
+scale放缩
+transform转换
+skew倾斜转换
+
+filter
+
+一些简单的例子:;
+.compatibility{
+
+	/*变化延迟*/
+	-webkit-transition: all 0.4s ease-out;
+  	-moz-transition: all 0.4s ease-out;
+ 	transition: all 0.4s ease-out;
+
+ 	/*透明度*/
+	filter:alpha(opacity=70);//IE
+	-moz-opacity:0.7;//old-FF
+	-khtml-opacity: 0.7;
+	opacity: 0.7;//FF&chrome
+
+	/*圆角*/
+	ie7以下不支持圆角
+	border-radius
+
+}
+
+div{
+	transform:rotate(7deg);
+	-ms-transform:rotate(7deg); 	/* IE 9 */
+	-moz-transform:rotate(7deg); 	/* Firefox */
+	-webkit-transform:rotate(7deg); /* Safari 和 Chrome */
+	-o-transform:rotate(7deg); 		/* Opera */
+}
+
+1、水平翻转
+-moz-transform:scale(-1，1);
+-webkit-transform:scale(-1，1);
+-o-transform:scale(-1，1);
+transform:scale(-1，1);
+filter:FlipH;
+
+2、垂直翻转
+-moz-transform:scale(1，-1);
+-webkit-transform:scale(1，-1);
+-o-transform:scale(1，-1);
+transform:scale(1，-1);
+filter:FlipV;
+
+3、顺时针旋转90度
+-moz-transform:rotate(90deg);
+-webkit-transform:rotate(90deg);
+-o-transform:rotate(90deg);
+transform:rotate(90deg);
+filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
+
+
+// CSS实现输入框的周围高亮效果让边框发亮
+-webkit-transition:border linear .2s,-webkit-box-shadow linear .5s;
+border-color:rgba(141,39,142,.75);
+-webkit-box-shadow:0 0 18px rgba(111,1,32,3); 
+
+如果想要这样一种布局：横向铺满整个屏幕，横线屏幕分为三块，左侧一块div占宽度20px，右侧一块div占宽度40px；中间区块随屏幕的大小不同而自动填充剩余空间，（设屏幕宽度大于60px），请用div+css写出上述效果？
+css3 display:box
