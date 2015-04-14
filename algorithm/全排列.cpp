@@ -1,47 +1,53 @@
-/*http://acm.zju.edu.cn/onlinejudge/showContestProblem.do?problemId=5229
-?(>_o)! is a pseudo-object-oriented programming language. 
-
-_ 	Print the program's source code.
-! 	Print "Hello, world!".
-
-Sample Input
-4
-Hello, world!
-source_code
-source__code
-?(>_o)!
-Sample Output
-Yes
-Yes
-No
-No
-Hint
-The output of the four sample programs are 
-{"Hello, world!", "source_code", "source__codesource__code", "?(>_o)!Hello, world!"} respectively. 
-Therefore the first two programs are quines, and the last two are not.
-*/
 #include <iostream>
-#include <cstdio>
-#include <cstring>
-#include <algorithm>
 using namespace std;
-char code[330];
-char ans[100010];
+int flag[10000]={0};
+int allSort(int n[],int start,int end);
 int main()
 {
-    int T;
-    scanf("%d",&T);
-    getchar();
-    while(T--){
-        gets(code);
-        int len=strlen(code);
-        ans[0]='\0';
-        for (int i=0;i<len;i++){
-            if (code[i]=='_') strcat(ans,code);
-            else if (code[i]=='!') strcat(ans,"Hello, world!");
-        }
-        if (strcmp(ans,code)==0) puts("Yes");
-        else puts("No");
-    }
+	int n[9];
+	for (int i=0;i<9;i++)
+	{
+		n[i] = i+1;
+	}
+	allSort(n,0,8);
+	return 0;
+}
+
+void check(int n[])
+{
+	int a=n[0]*10+n[1];
+	int b=n[2]*10+n[3];
+	int c=n[4]*10+n[5];
+	int d=n[6]*100+n[7]*10+n[8];
+
+    int flag1 = a*100+b;
+    int flag2 = a    +b*100;
+
+	if(a*b==c*d &&flag[flag2]==0 && flag[flag1]==0)
+		{
+		    cout<<a<<"x"<<b<<"="<<c<<"x"<<d<<endl;
+            flag[flag1]=1;
+            flag[flag2]=1;
+		}
+}
+int allSort(int n[],int start,int end)
+{
+	if (start>=end)
+	{
+		check(n);
+		return 0;
+	}else{
+		for (int i = start; i <=end; i++)
+		{
+			int t = n[start];
+			n[start] = n[i];
+			n[i] = t;
+
+			allSort(n,start+1,end);
+			t = n[start];
+			n[start] = n[i];
+			n[i] = t;
+		}
+	}
     return 0;
 }
