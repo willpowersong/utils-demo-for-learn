@@ -190,7 +190,7 @@ waitForMs(500);
 // D.time span:100.077ms
 
 
-// 写出下列执行结果
+//写出下列执行结果
 var a = 5;
 function test(){
     a=0;
@@ -203,7 +203,123 @@ test();
 new test();
 
 
-//
+//判断是否是通过iframe加载,否则重定向到index
 <script type="text/javascript">
-if (window == top) top.location.href = "index.aspx";
+    if(window == top) 
+        top.location.href = "index.php";
 </script>
+
+
+// 浅拷贝是拷贝对象，深拷贝是拷贝实例
+// 深拷贝就是不仅复制对象的基本类,同时也复制原对象中的对象.就是说完全是新对象产生的，新对象所指向的不是原来对像的地址。
+// 深拷贝对象和数组
+var cloneObj = function(obj){
+    var str, newobj = obj.constructor === Array ? [] : {};
+    if(typeof obj !== 'object'){
+        return;
+    } else if(window.JSON){
+        str = JSON.stringify(obj), //系列化对象
+        newobj = JSON.parse(str); //还原
+    } else {
+        for(var i in obj){
+            newobj[i] = typeof obj[i] === 'object' ? 
+            cloneObj(obj[i]) : obj[i]; 
+        }
+    }
+    return newobj;
+};
+---------------------------------------------------------------
+jQuery.extend = jQuery.fn.extend = function() {
+    var src, copyIsArray, copy, name, options, clone,
+        target = arguments[0] || {},
+        i = 1,
+        length = arguments.length,
+        deep = false;
+
+    // Handle a deep copy situation
+    if ( typeof target === "boolean" ) {
+        deep = target;
+
+        // skip the boolean and the target
+        target = arguments[ i ] || {};
+        i++;
+    }
+
+    // Handle case when target is a string or something (possible in deep copy)
+    if ( typeof target !== "object" && !jQuery.isFunction(target) ) {
+        target = {};
+    }
+
+    // extend jQuery itself if only one argument is passed
+    if ( i === length ) {
+        target = this;
+        i--;
+    }
+
+    for ( ; i < length; i++ ) {
+        // Only deal with non-null/undefined values
+        if ( (options = arguments[ i ]) != null ) {
+            // Extend the base object
+            for ( name in options ) {
+                src = target[ name ];
+                copy = options[ name ];
+
+                // Prevent never-ending loop
+                if ( target === copy ) {
+                    continue;
+                }
+
+                // Recurse if we're merging plain objects or arrays
+                if ( deep && copy && ( jQuery.isPlainObject(copy) || (copyIsArray = jQuery.isArray(copy)) ) ) {
+                    if ( copyIsArray ) {
+                        copyIsArray = false;
+                        clone = src && jQuery.isArray(src) ? src : [];
+
+                    } else {
+                        clone = src && jQuery.isPlainObject(src) ? src : {};
+                    }
+
+                    // Never move original objects, clone them
+                    target[ name ] = jQuery.extend( deep, clone, copy );
+
+                // Don't bring in undefined values
+                } else if ( copy !== undefined ) {
+                    target[ name ] = copy;
+                }
+            }
+        }
+    }
+
+    // Return the modified object
+    return target;
+};
+------------------------------------------------------------
+线程-贪婪调度
+function main(){
+    for(var index=0;index<10;index++){
+        alert("main thread");
+    setTimeout(secondary,20);
+    }
+}
+function secondary(){
+    alert("secondary");
+}
+main();
+// main*10 secondary*10
+
+---------------------------
+ 比如你点击a时有个继续函数setTimeout 1秒后执行clickEvent函数
+ 在这1秒还没有到你又点击了b
+ 所以就先执行b了
+ 而alter会阻塞线程 
+ 且js是单线程 
+ 所以 settimeout就会被阻塞即：不去计时。
+ 也就是说如果你把b的alter执行了你不去点击那个确定
+ 那么a的回调函数永远不会执行
+ 这个就是js的单线程！
+ 如果是多线程的话
+ a的时间到了就会弹出框的。
+---------------------------
+单线程
+http://blog.csdn.net/turkeyzhou/article/details/2784934
+http://blog.csdn.net/talking12391239/article/details/21168489
