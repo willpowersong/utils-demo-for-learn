@@ -10,3 +10,33 @@ static在c/c++的应用
 进程间通讯
 
 页表，lib event，cpu cache，weak ptr
+
+--------------
+如何基于http协议建立一个长连接？
+说一说计算机网络五层模型，路由器和交换机分别工作在在那一层？http协议呢？还有网站登陆都加验证码是为了解决哪方面的安全问题？数据结构课上学过的排序算法列举几个？一个基本有序数组用什么排序算法最快？
+-------------------------------------
+写一个类，可以对其调用任何函数
+且不失败
+且能打印调用的参数
+rpc(网络编程高层模块)
+测试
+
+class Any(object):
+	pass
+
+any = Any()
+any.fuck(1,2,3)
+any.shit([1,2,3],'fuck you pussy')
+any.suck("make me jizz in pants baby")
+输出：
+fuck
+(1,2,3)
+shit
+([1,2,3],'fuck you pussy')
+suck
+('make me jizz in pants baby',)
+[Finished in 0.1s]
+5行内解决
+提示
+*argument 可变长参数
+__getattr__

@@ -1,0 +1,8 @@
+pair和map的区别
+pair是一对<key,value>
+map是pair的集合
+
+构造和析构的顺序
+
+如何析构vector
+

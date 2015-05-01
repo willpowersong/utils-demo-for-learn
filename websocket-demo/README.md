@@ -1,5 +1,6 @@
 **webSocket**
 ====
+[没做出来]
 >points
 	
 	webSocket是基于ws协议的
@@ -14,3 +15,4 @@
 	使用websocket需要搭建一个websocket的服务器
 	可以使用WebSocket-Node
 	https://github.com/Worlize/Websocket-Node
+
