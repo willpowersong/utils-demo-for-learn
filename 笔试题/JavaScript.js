@@ -391,15 +391,15 @@ IE用srcElement获取事件源，而FF用target获取事件源
 
 (3) 添加，去除事件
 
-IE：element.attachEvent(“onclick”, function) element.detachEvent(“onclick”, function)
+IE：element.attachEvent("onclick", function) element.detachEvent("onclick", function)
 
-FF：element.addEventListener(“click”, function, true) element.removeEventListener(“click”, function, true)
+FF：element.addEventListener("click", function, true) element.removeEventListener("click", function, true)
 
 (4) 获取标签的自定义属性
 
-IE：div1.value或div1[“value”]
+IE：div1.value或div1["value"]
 
-FF：可用div1.getAttribute(“value”)
+FF：可用div1.getAttribute("value")
 
 (5) document.getElementByName()和document.all[name]
 
@@ -434,23 +434,14 @@ FF：不可以
 (2) 将每个开发人员的函数封装到类中，调用的时候就调用类的函数，即使函数重名只要类名不重复就ok
 -------------------------------------------
 6，javascript面向对象中继承实现
-
 javascript面向对象中的继承实现一般都使用到了构造函数和Prototype原型链，简单的代码如下：
-
 function Animal(name) {
-
    this.name = name;
-
 }
-
 Animal.prototype.getName = function() {alert(this.name)}
-
-function Dog() {};
-
+function Dog(){};
 Dog.prototype = new Animal("Buddy");
-
 Dog.prototype.constructor = Dog;
-
 var dog = new Dog();
 --------------------------------------------
 7，FF下面实现outerHTML
@@ -525,7 +516,7 @@ alert(arr.unique());
 ---------------------------------------------
 10，写出3个使用this的典型应用
 （1）在html元素事件属性中使用，如
-<input type=”button” onclick=”showInfo(this);” value=”点击一下”/>
+<input type="button" onclick="showInfo(this);" value="点击一下"/>
 （2）构造函数
 function Animal(name, color) {
    this.name = name;
@@ -555,8 +546,8 @@ el是要操作的DOM元素
 ----------------------------------------------
 13，JavaScript中如何检测一个变量是一个String类型？请写出函数实现
 String类型有两种生成方式：
-(1)Var str = “hello world”;
-(2)Var str2 = new String(“hello world”);
+(1)Var str = "hello world";
+(2)Var str2 = new String("hello world");
 function IsString(str){
     return (typeof str == "string" || str.constructor == String);
 }
@@ -565,44 +556,34 @@ alert(IsString(1));
 alert(IsString(str));
 alert(IsString(new String(str)));
 ----------------------------------------------
-14，网页中实现一个计算当年还剩多少时间的倒数计时程序，要求网页上实时动态显示“××年还剩××天××时××分××秒”
-
+14，网页中实现一个计算当年还剩多少时间的倒数计时程序，要求网页上实时动态显示"××年还剩××天××时××分××秒"
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
 <html>
-
 <head>
-
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
    <title>倒计时</title>
-
 </head>
-
 <body>
-
 <input type="text" value="" id="input" size="1000"/>
-
 <script type="text/javascript">
-
    function counter() {
-      var date = new Date();
-      var year = date.getFullYear();
-      var date2 = new Date(year, 12, 31, 23, 59, 59);
-      var time = (date2 - date)/1000;
-      var day =Math.floor(time/(24*60*60))
-      var hour = Math.floor(time%(24*60*60)/(60*60))
-      var minute = Math.floor(time%(24*60*60)%(60*60)/60);
-      var second = Math.floor(time%(24*60*60)%(60*60)%60);
-      var str = year + "年还剩"+day+"天"+hour+"时"+minute+"分"+second+"秒";
-      document.getElementById("input").value = str;
+     var date = new Date();
+     var year = date.getFullYear();
+     var date2 = new Date(year, 12, 31, 23, 59, 59);
+     var time = (date2 - date)/1000;
+     var day =Math.floor(time/(24*60*60))
+     var hour = Math.floor(time%(24*60*60)/(60*60))
+     var minute = Math.floor(time%(24*60*60)%(60*60)/60);
+     var second = Math.floor(time%(24*60*60)%(60*60)%60);
+     var str = year + "年还剩"+day+"天"+hour+"时"+minute+"分"+second+"秒";
+     document.getElementById("input").value = str;
    }
  window.setInterval("counter()", 1000);
 </script>
 </body>
 </html>
 ---------------------------------------------
-15，补充代码，鼠标单击Button1后将Button1移动到Button2的后面<div> <input type=”button” id =”button1″ value=”1″ onclick=”???”> <input type=”button” id =”button2″ value=”2″ /”> </div>
+15，补充代码，鼠标单击Button1后将Button1移动到Button2的后面<div> <input type="button" id ="button1" value="1" onclick="???"> <input type="button" id ="button2" value="2" /> </div>
 <div>
    <input type="button" id ="button1" value="1" onclick="moveBtn(this);">
    <input type="button" id ="button2" value="2" />
@@ -646,7 +627,7 @@ function cloneObject(o) {
 };
 ----------------------------------------------
 19，如何控制alert中的换行
-\n alert(“p\np”);
+\n alert("p\np");
 20，请实现，鼠标点击页面中的任意标签，alert该标签的名称．（注意兼容性）
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -674,7 +655,7 @@ document.onclick = function(evt){
 </html>
 ----------------------------------------------
 21，请编写一个JavaScript函数 parseQueryString，它的用途是把URL参数解析为一个对象，如：
-var url = “http://witmax.cn/index.php?key0=0&key1=1&key2=2″;
+var url = "http://witmax.cn/index.php?key0=0&key1=1&key2=2";
 function parseQueryString(url){
    var params = {};
    var arr = url.split("?");
@@ -711,7 +692,7 @@ PS：（1）如果是端口或者协议造成的跨域问题前端是无能为�
 (1) document.domain+iframe
 (2) 动态创建script标签
 23，什么是闭包？下面这个ul，如何点击每一列的时候alert其index?
-<ul id=”test”>
+<ul id="test">
 <li>这是第一条</li>
 <li>这是第二条</li>
 <li>这是第三条</li>
@@ -786,7 +767,7 @@ if(ua.ie){
 }
 ----------------------------------------------
 26，js中如何定义class,如何扩展prototype?
-Ele.className = “***”; //***在css中定义，形式如下：.*** {…}
+Ele.className = "***"; //***在css中定义，形式如下：.*** {…}
 A.prototype.B = C;
 A是某个构造函数的名字
 B是这个构造函数的属性
@@ -863,7 +844,7 @@ HTML+CSS
 8、垂直水平居中的实现方式。
 9、常用布局的实现（两列布局、三列适应布局，两列等高适应布局等）。
 Javascript
-1、犀牛书封面的犀牛属于神马品种？（蛋逼活跃气氛用。。。）
+1、犀牛书封面的犀牛属于神马品种？（活跃气氛用。。。）
 2、常用的浏览器内核。
 3、常用的DOM操作，新建、添加、删除、移动、查找等。
 4、String于Array常用方法。
