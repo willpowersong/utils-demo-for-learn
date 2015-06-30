@@ -1,0 +1,8 @@
+马上想到的就这4个： 
+1. 伪类li:last-child{margin:0;} 
+2. 加父层超出隐藏.list{width:100px;overflow:hidden;}ul{width:110px;}
+3. 负值ul { margin-left:-10px;}ul li{float:left; margin-left:10px;} 
+4. 设个 .no-mar{ margin:0;} 
+1. 手机用
+2/3 PC用兼容好
+4几乎不用
