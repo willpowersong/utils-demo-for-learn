@@ -1,4 +1,0 @@
-用一句话,写出来,一个17 * 17的大正方形里面
-map也行，list comprehension也行
-
-
